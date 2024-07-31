@@ -1,0 +1,70 @@
+name: MLOPs
+
+env:
+  DATABRICKS_HOST: ${{ vars.LHN_PROD_DATABRICKS_HOST }}
+  DATABRICKS_TOKEN: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # push:
+  #   branches: [ "main" ]
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Install Databricks CLI
+      - name: Install databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      # List databricks repos
+      - name: List databricks repos
+        run: |
+          databricks repos list
+
+      # Update databricks repos
+      - name: Update databricks repos
+        run: |
+          databricks repos update /Repos/GitHub/demo_000 --branch main
+
+      # Run notebook
+      - name: Run notebook
+        uses: databricks/run-notebook@v0
+        with:
+          local-notebook-path: ./source/demo_notebook.py
+          databricks-host: ${{ vars.LHN_PROD_DATABRICKS_HOST }}
+          databricks-token: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
+          new-cluster-json: >
+            {
+              "num_workers": 1,
+              "spark_version": "14.3.x-scala2.12",
+              "node_type_id": "i3.xlarge"
+            }
+
+      # Run job
+      # - name: Run workflow
+      #   run: |
+      #     databricks jobs run-now 723786334173659
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
