@@ -1,5 +1,11 @@
 # Databricks notebook source
 # MAGIC %md
+# MAGIC Machine Learning End to End Process
+# MAGIC <img title="ML E2E" alt="Machine Learning End to End Process" src="https://nhathoang-public-bucket.s3.ap-southeast-1.amazonaws.com/images/mlops-uc-end2end-0.jpg">
+
+# COMMAND ----------
+
+# MAGIC %md
 # MAGIC ### Import libraries
 
 # COMMAND ----------

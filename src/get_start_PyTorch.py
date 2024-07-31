@@ -1,4 +1,10 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC PyTorch Workflow
+# MAGIC <img title="PyTorch" alt="PyTorch Workflow" src="https://nhathoang-public-bucket.s3.ap-southeast-1.amazonaws.com/images/pytorch+workflow.jpg">
+
+# COMMAND ----------
+
 import torch
 import torch.nn as nn
 import pandas as pd
