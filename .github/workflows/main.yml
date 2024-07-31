@@ -7,8 +7,8 @@ env:
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  # push:
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,23 +36,23 @@ jobs:
           databricks repos list
 
       # Update databricks repos
-      - name: Update databricks repos
-        run: |
-          databricks repos update /Repos/GitHub/demo_000 --branch main
+      # - name: Update databricks repos
+      #   run: |
+      #     databricks repos update /Repos/GitHub/demo_000 --branch main
 
       # Run notebook
-      - name: Run notebook
-        uses: databricks/run-notebook@v0
-        with:
-          local-notebook-path: ./source/demo_notebook.py
-          databricks-host: ${{ vars.LHN_PROD_DATABRICKS_HOST }}
-          databricks-token: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
-          new-cluster-json: >
-            {
-              "num_workers": 1,
-              "spark_version": "14.3.x-scala2.12",
-              "node_type_id": "i3.xlarge"
-            }
+      # - name: Run notebook
+      #   uses: databricks/run-notebook@v0
+      #   with:
+      #     local-notebook-path: ./source/demo_notebook.py
+      #     databricks-host: ${{ vars.LHN_PROD_DATABRICKS_HOST }}
+      #     databricks-token: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
+      #     new-cluster-json: >
+      #       {
+      #         "num_workers": 1,
+      #         "spark_version": "14.3.x-scala2.12",
+      #         "node_type_id": "i3.xlarge"
+      #       }
 
       # Run job
       # - name: Run workflow
