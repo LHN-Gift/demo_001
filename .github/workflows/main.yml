@@ -44,8 +44,7 @@ jobs:
       - name: Run notebook
         uses: databricks/run-notebook@v0
         with:
-          # local-notebook-path: ./src/get_start_PyTorch.py
-          local-notebook-path: ./source/demo_notebook.py
+          local-notebook-path: ./src/test.py
           databricks-host: ${{ vars.LHN_PROD_DATABRICKS_HOST }}
           databricks-token: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
           existing-cluster-id: 0731-103934-x5jzm2al
