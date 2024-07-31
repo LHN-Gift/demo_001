@@ -49,7 +49,11 @@ jobs:
           databricks-token: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
           existing-cluster-id: 0731-103934-x5jzm2al
           notebook-params-json: > 
-            [ {"name": "Alexa"} ]
+            [ 
+              {
+                "name": "Alexa"
+              } 
+            ]
 
       # Run job
       # - name: Run workflow
