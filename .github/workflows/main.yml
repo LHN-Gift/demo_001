@@ -41,18 +41,20 @@ jobs:
           databricks repos update /Repos/GitHub/demo_001 --branch main
 
       # Run notebook
-      # - name: Run notebook
-      #   uses: databricks/run-notebook@v0
-      #   with:
-      #     local-notebook-path: ./source/demo_notebook.py
-      #     databricks-host: ${{ vars.LHN_PROD_DATABRICKS_HOST }}
-      #     databricks-token: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
-      #     new-cluster-json: >
-      #       {
-      #         "num_workers": 1,
-      #         "spark_version": "14.3.x-scala2.12",
-      #         "node_type_id": "i3.xlarge"
-      #       }
+      - name: Run notebook
+        uses: databricks/run-notebook@v0
+        with:
+          # local-notebook-path: ./src/get_start_PyTorch.py
+          local-notebook-path: ./source/demo_notebook.py
+          databricks-host: ${{ vars.LHN_PROD_DATABRICKS_HOST }}
+          databricks-token: ${{ secrets.LHN_PROD_DATABRICKS_TOKEN }}
+          existing-cluster-id: 0731-103934-x5jzm2al
+          # new-cluster-json: >
+          #   {
+          #     "num_workers": 1,
+          #     "spark_version": "14.3.x-scala2.12",
+          #     "node_type_id": "i3.xlarge"
+          #   }
 
       # Run job
       # - name: Run workflow
