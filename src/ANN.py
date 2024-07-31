@@ -236,13 +236,13 @@ df.info()
 
 # COMMAND ----------
 
-caterogies = np.stack(
+categories = np.stack(
     [df[col].cat.codes.values for col in cat_cols], axis=1
 )
 
-caterogies = torch.tensor(caterogies, dtype=torch.int64)
+categories = torch.tensor(categories, dtype=torch.int64)
 
-caterogies
+categories
 
 # COMMAND ----------
 
@@ -425,11 +425,23 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 # COMMAND ----------
 
+categories[:5]
+
+# COMMAND ----------
+
+numerics[:5]
+
+# COMMAND ----------
+
+label
+
+# COMMAND ----------
+
 epochs = 300
 losses = []
 
 for i in range(epochs):
-    y_pred = model(caterogies, numerics)
+    y_pred = model(categories, numerics)
     loss = torch.sqrt(criterion(y_pred, label))
     losses.append(loss)
 
