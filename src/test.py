@@ -1,2 +1,6 @@
 # Databricks notebook source
-print('Hello world!')
+name = dbutils.widgets.get("name")
+
+# COMMAND ----------
+
+print(f'Hello world! {name} is comming')
