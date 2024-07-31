@@ -36,9 +36,9 @@ jobs:
           databricks repos list
 
       # Update databricks repos
-      # - name: Update databricks repos
-      #   run: |
-      #     databricks repos update /Repos/GitHub/demo_001 --branch main
+      - name: Update databricks repos
+        run: |
+          databricks repos update /Repos/GitHub/demo_001 --branch main
 
       # Run notebook
       # - name: Run notebook
